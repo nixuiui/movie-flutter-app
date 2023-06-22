@@ -16,22 +16,7 @@ class GetMoviesParams {
         "sort_by": "release_date.desc"
     };
 
-    Map<String, dynamic> topRatedMovies() => {
-        "language": language ?? 'en-US',
-        "page": page ?? 1,
-    };
-
-    Map<String, dynamic> nowPlayingMovies() => {
-        "language": language ?? 'en-US',
-        "page": page ?? 1,
-    };
-
-    Map<String, dynamic> upcomingMovies() => {
-        "language": language ?? 'en-US',
-        "page": page ?? 1,
-    };
-
-    Map<String, dynamic> popularMovies() => {
+    Map<String, dynamic> withPaginationOnly() => {
         "language": language ?? 'en-US',
         "page": page ?? 1,
     };
