@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/features/home/presentation/controllers/home_controller.dart';
 import 'package:movie_app/features/movie/presentation/controllers/favorite_movies_controller.dart';
+import 'package:movie_app/features/movie/presentation/controllers/watchlist_movies_controller.dart';
 import 'package:movie_app/features/movie/presentation/pages/favorite_movies_page.dart';
+import 'package:movie_app/features/movie/presentation/pages/watchlist_movies_page.dart';
 import 'package:nixui/themes/theme.dart';
 
 import 'home_tab.dart';
@@ -21,11 +23,13 @@ class _HomePageState extends State<HomePage> {
 
   final homeController = HomeController.to;
   final favoriteMoviesController = FavoriteMovieController.to;
+  final watchlistMoviesController = WatchlistMovieController.to;
 
   @override
   void initState() {
     homeController.init();
     favoriteMoviesController.init();
+    watchlistMoviesController.init();
     super.initState();
   }
 
@@ -42,9 +46,9 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return const FavoriteMoviesPage();
       case 2:
-        return const Text('ss');
+        return const WatchlistMoviesPage();
       default:
-        return const Text('ss');
+        return const HomeTab();
     }
   }
 

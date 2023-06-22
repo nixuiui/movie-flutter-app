@@ -18,6 +18,7 @@ import 'package:movie_app/features/movie/presentation/controllers/favorite_movie
 import 'package:movie_app/features/movie/presentation/controllers/movie_controller.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_detail_controller.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_list_controller.dart';
+import 'package:movie_app/features/movie/presentation/controllers/watchlist_movies_controller.dart';
 
 import 'core/services/network_service.dart';
 import 'features/home/presentation/controllers/home_controller.dart';
@@ -65,6 +66,9 @@ Future<void> movieInjection() async {
   ));
   Get.put(FavoriteMovieController(
     getFavoriteMovies: Get.find()
+  ));
+  Get.put(WatchlistMovieController(
+    getWatchlistMovies: Get.find()
   ));
   Get.put(MovieDetailController(
     getMovieDetail: Get.find()
