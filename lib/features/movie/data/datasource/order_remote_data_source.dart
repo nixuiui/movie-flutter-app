@@ -21,7 +21,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     var url = '/3/discover/movie';
     final response = await _service.get(url: url, parameters: params.movieListParams());
     var data = response.data != null
-          ? List<MovieModel>.from(response.data['data']['results'].map((x) => MovieModel.fromJson(x)))
+          ? List<MovieModel>.from(response.data['results'].map((x) => MovieModel.fromJson(x)))
           : <MovieModel>[];
     return data;
   }
@@ -31,7 +31,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     var url = '/3/movie/top_rated';
     final response = await _service.get(url: url, parameters: params.topRatedMovies());
     var data = response.data != null
-          ? List<MovieModel>.from(response.data['data']['results'].map((x) => MovieModel.fromJson(x)))
+          ? List<MovieModel>.from(response.data['results'].map((x) => MovieModel.fromJson(x)))
           : <MovieModel>[];
     return data;
   }
@@ -41,7 +41,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     var url = '/3/movie/now_playing';
     final response = await _service.get(url: url, parameters: params.nowPlayingMovies());
     var data = response.data != null
-          ? List<MovieModel>.from(response.data['data']['results'].map((x) => MovieModel.fromJson(x)))
+          ? List<MovieModel>.from(response.data['results'].map((x) => MovieModel.fromJson(x)))
           : <MovieModel>[];
     return data;
   }
@@ -51,7 +51,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     var url = '/3/movie/upcoming';
     final response = await _service.get(url: url, parameters: params.upcomingMovies());
     var data = response.data != null
-          ? List<MovieModel>.from(response.data['data']['results'].map((x) => MovieModel.fromJson(x)))
+          ? List<MovieModel>.from(response.data['results'].map((x) => MovieModel.fromJson(x)))
           : <MovieModel>[];
     return data;
   }
@@ -61,7 +61,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     var url = '/3/movie/popular';
     final response = await _service.get(url: url, parameters: params.upcomingMovies());
     var data = response.data != null
-          ? List<MovieModel>.from(response.data['data']['results'].map((x) => MovieModel.fromJson(x)))
+          ? List<MovieModel>.from(response.data['results'].map((x) => MovieModel.fromJson(x)))
           : <MovieModel>[];
     return data;
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/features/home/presentation/controllers/home_controller.dart';
 import 'package:nixui/themes/theme.dart';
 
 import 'home_tab.dart';
@@ -16,8 +17,11 @@ class _HomePageState extends State<HomePage> {
 
   final _parentKey = GlobalKey();
 
+  final homeController = HomeController.to;
+
   @override
   void initState() {
+    homeController.init();
     super.initState();
   }
 
@@ -36,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       case 2:
         return const Text('ss');
       default:
-        return const Text('Product');
+        return const Text('ss');
     }
   }
 
@@ -72,14 +76,14 @@ class _HomePageState extends State<HomePage> {
             label: 'Beranda',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_rounded),
-            activeIcon: Icon(Icons.receipt_rounded),
-            label: 'Orderan',
+            icon: Icon(Icons.favorite_outline),
+            activeIcon: Icon(Icons.favorite),
+            label: 'Favorite',
           ),
           BottomNavigationBarItem(
-            icon:  Icon(Icons.person_rounded),
-            activeIcon:  Icon(Icons.person_rounded),
-            label: 'Profile',
+            icon:  Icon(Icons.alarm),
+            activeIcon:  Icon(Icons.alarm),
+            label: 'Watchlist',
           ),
         ],
         currentIndex: selectedIndex,

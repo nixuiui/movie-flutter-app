@@ -33,6 +33,12 @@ class Movie extends Equatable {
         this.voteCount,
     });
 
+    String get backdropUrl => 'https://image.tmdb.org/t/p/original/$backdropPath';
+    String get backdrop500Url => 'https://image.tmdb.org/t/p/w500/$backdropPath';
+
+    String get posterUrl => 'https://image.tmdb.org/t/p/original/$posterPath';
+    String get poster500Url => 'https://image.tmdb.org/t/p/w500/$posterPath';
+
     @override
     List<Object?> get props => [
       adult,

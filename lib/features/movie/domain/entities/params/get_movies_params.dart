@@ -10,29 +10,29 @@ class GetMoviesParams {
     final int? page;
 
     Map<String, dynamic> movieListParams() => {
-        "language": language,
+        "language": language ?? 'en-US',
         "page": page ?? 1,
         "release_date.lte": DateFormat('y-MM-dd').format(DateTime.now()),
         "sort_by": "release_date.desc"
     };
 
     Map<String, dynamic> topRatedMovies() => {
-        "language": language,
+        "language": language ?? 'en-US',
         "page": page ?? 1,
     };
 
     Map<String, dynamic> nowPlayingMovies() => {
-        "language": language,
+        "language": language ?? 'en-US',
         "page": page ?? 1,
     };
 
     Map<String, dynamic> upcomingMovies() => {
-        "language": language,
+        "language": language ?? 'en-US',
         "page": page ?? 1,
     };
 
     Map<String, dynamic> popularMovies() => {
-        "language": language,
+        "language": language ?? 'en-US',
         "page": page ?? 1,
     };
 }
