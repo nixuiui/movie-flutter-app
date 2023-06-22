@@ -13,7 +13,7 @@ import 'package:movie_app/features/movie/domain/usecases/get_upcoming_movies.dar
 import 'package:movie_app/features/movie/domain/usecases/get_watchlist_movies.dart';
 import 'package:movie_app/features/movie/domain/usecases/post_add_to_watchlist.dart';
 import 'package:movie_app/features/movie/domain/usecases/post_mark_as_favorite.dart';
-import 'package:movie_app/features/movie/domain/usecases/post_rate_moview.dart';
+import 'package:movie_app/features/movie/domain/usecases/post_rate_movie.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_controller.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_detail_controller.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_list_controller.dart';
@@ -59,7 +59,7 @@ Future<void> movieInjection() async {
   Get.lazyPut(() => DeleteRateMovie(Get.find()));
 
   Get.put(MovieController());
-  Get.put(MoviewListController(
+  Get.put(MovieListController(
     getMovies: Get.find()
   ));
   Get.put(MovieDetailController(

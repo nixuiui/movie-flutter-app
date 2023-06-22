@@ -7,13 +7,13 @@ import 'package:movie_app/features/movie/domain/entities/movie.dart';
 import 'package:movie_app/features/movie/domain/entities/params/get_movies_params.dart';
 import 'package:movie_app/features/movie/domain/usecases/get_movies.dart';
 
-class MoviewListController extends GetxController {
+class MovieListController extends GetxController {
   
-  static MoviewListController get to => Get.find();
+  static MovieListController get to => Get.find();
 
   final GetMovies getMovies;
   
-  MoviewListController({
+  MovieListController({
     required this.getMovies,
   });
 

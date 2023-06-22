@@ -15,7 +15,7 @@ class MovieListPage extends StatefulWidget {
 
 class _MovieListPageState extends State<MovieListPage> {
 
-  final movieController = MoviewListController.to;
+  final movieController = MovieListController.to;
   final scrollController = ScrollController();
 
   @override

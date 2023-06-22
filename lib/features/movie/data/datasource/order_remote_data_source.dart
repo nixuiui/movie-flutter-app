@@ -5,7 +5,7 @@ import 'package:movie_app/features/movie/domain/entities/params/post_mark_as_fav
 import 'package:movie_app/features/movie/domain/entities/params/post_rate_movie_params.dart';
 
 import '../../../../core/services/network_service.dart';
-import '../models/moview_model.dart';
+import '../models/movie_model.dart';
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>?> getMovies(GetMoviesParams params);
