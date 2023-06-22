@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/features/movie/movie_routes.dart';
-import 'package:movie_app/features/movie/presentation/controllers/movie_list_controller.dart';
+import 'package:movie_app/features/movie/presentation/controllers/favorite_movies_controller.dart';
 import 'package:movie_app/features/movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie_app/features/movie/presentation/widgets/movie_item_widget.dart';
 import 'package:nixui/widgets/nixui.dart';
 
-class MovieListPage extends StatefulWidget {
-  const MovieListPage({super.key});
+class FavoriteMoviesPage extends StatefulWidget {
+  const FavoriteMoviesPage({super.key});
 
   @override
-  State<MovieListPage> createState() => _MovieListPageState();
+  State<FavoriteMoviesPage> createState() => _FavoriteMoviesPageState();
 }
 
-class _MovieListPageState extends State<MovieListPage> {
+class _FavoriteMoviesPageState extends State<FavoriteMoviesPage> {
 
-  final movieController = MovieListController.to;
+  final movieController = FavoriteMovieController.to;
   final scrollController = ScrollController();
 
   @override
   void initState() {
     scrollController.addListener(_onScroll);
-    movieController.init();
     super.initState();
   }
 
@@ -35,7 +34,7 @@ class _MovieListPageState extends State<MovieListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Browse Movies'),
+        title: const Text('Favorite Movies'),
       ),
       body: RefreshIndicator(
         onRefresh: movieController.refreshData,

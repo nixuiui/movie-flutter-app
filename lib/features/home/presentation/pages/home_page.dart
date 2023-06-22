@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/features/home/presentation/controllers/home_controller.dart';
+import 'package:movie_app/features/movie/presentation/controllers/favorite_movies_controller.dart';
+import 'package:movie_app/features/movie/presentation/pages/favorite_movies_page.dart';
 import 'package:nixui/themes/theme.dart';
 
 import 'home_tab.dart';
@@ -18,10 +20,12 @@ class _HomePageState extends State<HomePage> {
   final _parentKey = GlobalKey();
 
   final homeController = HomeController.to;
+  final favoriteMoviesController = FavoriteMovieController.to;
 
   @override
   void initState() {
     homeController.init();
+    favoriteMoviesController.init();
     super.initState();
   }
 
@@ -36,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return const HomeTab();
       case 1:
-        return const Text('ss');
+        return const FavoriteMoviesPage();
       case 2:
         return const Text('ss');
       default:
