@@ -31,14 +31,14 @@ void main() async {
         primaryColor: NxColor.primary,
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
-          backgroundColor: NxColor.primary,
+          backgroundColor: Colors.white,
           elevation: 0,
           shadowColor: Colors.grey[50],
           iconTheme: IconThemeData(
-            color: NxTextTheme.textColor
+            color: NxColor.primary,
           ),
-          titleTextStyle: const TextStyle(
-            color: Colors.white,
+          titleTextStyle: TextStyle(
+            color: NxColor.primary,
             fontWeight: FontWeight.w600
           )
         ),

@@ -34,10 +34,10 @@ class HomeController extends GetxController {
   final popularLoading = RxBool(false);
 
   Future<void> init() async {
-    await fetchNowPlayingMovie();
-    await fetchUpcomingMovie();
-    await fetchTopRatedMovie();
-    await fetchPopularMovie();
+    fetchNowPlayingMovie();
+    fetchUpcomingMovie();
+    fetchTopRatedMovie();
+    fetchPopularMovie();
   }
 
   Future<void> fetchNowPlayingMovie() async {
