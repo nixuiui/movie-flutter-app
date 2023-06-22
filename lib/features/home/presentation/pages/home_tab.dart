@@ -120,9 +120,7 @@ class _HomeTabState extends State<HomeTab> {
             textColor: NxColor.primary,
             fontWeight: FontWeight.w500,
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-            onPressed: () {
-
-            },
+            onPressed: () => Get.toNamed(movieRoutes.movie),
           )
         ],
       )

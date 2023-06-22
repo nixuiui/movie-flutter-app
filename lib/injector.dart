@@ -16,6 +16,7 @@ import 'package:movie_app/features/movie/domain/usecases/post_mark_as_favorite.d
 import 'package:movie_app/features/movie/domain/usecases/post_rate_moview.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_controller.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_detail_controller.dart';
+import 'package:movie_app/features/movie/presentation/controllers/movie_list_controller.dart';
 
 import 'core/services/network_service.dart';
 import 'features/home/presentation/controllers/home_controller.dart';
@@ -58,6 +59,9 @@ Future<void> movieInjection() async {
   Get.lazyPut(() => DeleteRateMovie(Get.find()));
 
   Get.put(MovieController());
+  Get.put(MoviewListController(
+    getMovies: Get.find()
+  ));
   Get.put(MovieDetailController(
     getMovieDetail: Get.find()
   ));

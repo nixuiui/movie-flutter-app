@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 class Movie extends Equatable {
     final bool? adult;
@@ -33,11 +34,13 @@ class Movie extends Equatable {
         this.voteCount,
     });
 
-    String get backdropUrl => 'https://image.tmdb.org/t/p/original/$backdropPath';
-    String get backdrop500Url => 'https://image.tmdb.org/t/p/w500/$backdropPath';
+    String? get backdropUrl => 'https://image.tmdb.org/t/p/original/$backdropPath';
+    String? get backdrop500Url => 'https://image.tmdb.org/t/p/w500/$backdropPath';
 
-    String get posterUrl => 'https://image.tmdb.org/t/p/original/$posterPath';
-    String get poster500Url => 'https://image.tmdb.org/t/p/w500/$posterPath';
+    String? get posterUrl => 'https://image.tmdb.org/t/p/original/$posterPath';
+    String? get poster500Url => 'https://image.tmdb.org/t/p/w500/$posterPath';
+
+    String get year => DateFormat('y').format(releaseDate ?? DateTime.now());
 
     @override
     List<Object?> get props => [

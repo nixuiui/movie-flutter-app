@@ -6,6 +6,8 @@ import 'package:movie_app/features/movie/domain/entities/movie.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_detail_controller.dart';
 import 'package:nixui/widgets/nixui.dart';
 
+import '../../../../resources/widgets/image.dart';
+
 class MovieDetailPageArguments {
   final Movie movie;
   
@@ -54,30 +56,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ClipRRect(
-          //   borderRadius: BorderRadius.circular(8),
-          //   child: Container(
-          //     color: Colors.grey[300],
-          //     child: Image.network(
-          //       width: 100,
-          //       height: 150,
-          //       movie?.poster500Url ?? '',
-          //       fit: BoxFit.cover,
-          //       loadingBuilder: (context, child, loadingProgress) {
-          //         if (loadingProgress == null) return child;
-          //         return Container(
-          //           width: 120,
-          //           height: 180,
-          //           color: Colors.grey[300],
-          //           child: const Center(
-          //             child: NxLoadingSpinner()
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
-          // const SizedBox(width: 16,),
+          UiImage(
+            url: movie?.poster500Url,
+            width: 100,
+            height: 150,
+          ),
+          const SizedBox(width: 16,),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,27 +92,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         margin: const EdgeInsets.only(bottom: 32),
         child: Stack(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Container(
-                color: Colors.grey[200],
-                child: AspectRatio(
-                  aspectRatio: 2/1,
-                  child: Image.network(
-                    width: double.infinity,
-                    movie?.backdrop500Url ?? '',
-                    fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        color: Colors.grey[300],
-                        child: const Center(
-                          child: NxLoadingSpinner()
-                        ),
-                      );
-                    },
-                  ),
-                ),
+            AspectRatio(
+              aspectRatio: 2/1,
+              child: UiImage(
+                url: movie?.backdrop500Url,
+                width: double.infinity,
+                radius: 16,
               ),
             ),
             Positioned(

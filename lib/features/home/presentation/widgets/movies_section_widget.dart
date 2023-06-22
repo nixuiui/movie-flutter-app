@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/features/movie/domain/entities/movie.dart';
+import 'package:movie_app/resources/widgets/image.dart';
 import 'package:nixui/widgets/nixui.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -45,40 +46,18 @@ class MoviesSectionWidget extends StatelessWidget {
         children: List.generate(movies.length, (index) {
           return Container(
             margin: index > 0 ? const EdgeInsets.only(left: 16) : null,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: NxBox(
-                color: Colors.grey,
+            child: NxBox(
+              width: 120,
+              height: 180,
+              onPressed: () {
+                onItemClicked?.call(movies[index]);
+              },
+              child: UiImage(
+                url: movies[index].poster500Url,
                 width: 120,
                 height: 180,
-                onPressed: () {
-                  onItemClicked?.call(movies[index]);
-                },
-                child: Column(
-                  children: [
-                    Container(
-                      color: Colors.grey[300],
-                      child: Image.network(
-                        width: 120,
-                        height: 180,
-                        movies[index].poster500Url,
-                        fit: BoxFit.cover,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Container(
-                            width: 120,
-                            height: 180,
-                            color: Colors.grey[300],
-                            child: const Center(
-                              child: NxLoadingSpinner()
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                )
-              ),
+                radius: 8,
+              )
             ),
           );
         })
