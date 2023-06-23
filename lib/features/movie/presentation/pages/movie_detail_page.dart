@@ -154,6 +154,54 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               textAlign: TextAlign.justify,
             ), 
           ),
+          const SizedBox(height: 16,),
+          const NxText(
+            'Rate Movie',
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+            lineHeight: 1.5,
+          ),
+          const SizedBox(height: 8,),
+          !detailController.rateMode.value 
+            ? NxButton(
+                text: 'Click to Rate Movie',
+                leftIcon: const Icon(Icons.star, color: Colors.white,),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                onPressed: () => detailController.setRateMode(true),
+              )
+            : NxBox(
+              borderColor: NxColor.border,
+              width: double.infinity,
+              borderRadius: 16,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(5, (index) => GestureDetector(
+                      onTap: () {
+                        detailController.setRateValue(index+1);
+                      },
+                      child: Icon(
+                        Icons.star,
+                        size: 32,
+                        color: index <= detailController.rateValue.value-1
+                            ? Colors.yellow 
+                            : Colors.grey[300],
+                      ),
+                    )),
+                  ),
+                  const SizedBox(height: 16,),
+                  NxButton(
+                    text: 'Send',
+                    width: double.infinity,
+                    isLoading: detailController.rateLoading.value,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    onPressed: () => detailController.rateMovie(),
+                  ),
+                ],
+              ),
+            ),
         ],
       );
     });

@@ -142,7 +142,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<bool?> postRateMovie(PostRateMovieParams params) async {
-    var url = '/3/account/${AppConsts.accountId}/watchlist';
+    var url = '/3/movie/${params.movieId}/rating';
     await _service.post(url: url, data: params.toJson());
     return true;
   }

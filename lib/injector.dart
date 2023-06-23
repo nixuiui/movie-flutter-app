@@ -77,6 +77,7 @@ Future<void> movieInjection() async {
     getMovieDetail: Get.find(),
     postAddToWatchList: Get.find(),
     postMarkAsFavorite: Get.find(),
+    postRateMovie: Get.find(),
   ));
 }
 
