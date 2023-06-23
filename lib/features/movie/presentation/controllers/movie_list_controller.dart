@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:movie_app/core/const/enum.dart';
 import 'package:movie_app/core/services/toast_service.dart';
+import 'package:movie_app/core/usecases/usecase.dart';
 import 'package:movie_app/features/movie/domain/entities/movie.dart';
 import 'package:movie_app/features/movie/domain/entities/params/get_movies_params.dart';
+import 'package:movie_app/features/movie/domain/usecases/get_genres.dart';
 import 'package:movie_app/features/movie/domain/usecases/get_movies.dart';
 
 class MovieListController extends GetxController {
@@ -12,9 +14,11 @@ class MovieListController extends GetxController {
   static MovieListController get to => Get.find();
 
   final GetMovies getMovies;
+  final GetGenres getGenres;
   
   MovieListController({
     required this.getMovies,
+    required this.getGenres,
   });
 
   final loadingList = RxBool(false);
@@ -24,6 +28,8 @@ class MovieListController extends GetxController {
   final mealScrollThreshold = 200.0;
   final mealHasReachedMax = RxBool(false);
 
+  final genres = RxList<Genre>([]);
+  final selectedGenre = RxList<Genre>([]);
   final sort = Rx<SortOption>(SortOption.popular);
 
   final movies = RxList<Movie>([]);
@@ -31,9 +37,11 @@ class MovieListController extends GetxController {
   void init() async {
     page = 1;
     fetchMoviesData();
+    fetchGenres();
   }
 
   Future<void> refreshData() async {
+    fetchGenres();
     page = 1;
     mealHasReachedMax.value = false;
     movies.value = [];
@@ -58,7 +66,8 @@ class MovieListController extends GetxController {
 
     final response = await getMovies.call(GetMoviesParams(
       page: page,
-      sort: sort.value
+      sort: sort.value,
+      genre: selectedGenre
     ));
 
     response.fold(
@@ -98,9 +107,26 @@ class MovieListController extends GetxController {
   }
 
   void setSort(SortOption value) {
-    print('value: $value');
     sort.value = value;
     refreshData();
+  }
+
+  void setGenres(List<Genre> value) {
+    selectedGenre.value = value;
+    refreshData();
+  }
+
+  Future<void> fetchGenres() async {
+    final response = await getGenres.call(NoParams());
+
+    response.fold(
+      (error) {
+        toast.showToastError('$error');
+      }, 
+      (result) {
+        genres.value = result ?? [];
+      }
+    );
   }
   
 }

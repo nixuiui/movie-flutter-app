@@ -8,7 +8,7 @@ import 'package:movie_app/features/movie/domain/entities/params/post_rate_movie_
 
 import '../../../../core/network/api_call.dart';
 import '../../domain/repositories/movie_repository.dart';
-import '../datasource/order_remote_data_source.dart';
+import '../datasource/movie_remote_data_source.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
@@ -80,6 +80,11 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<Either<NetworkException, bool?>> deleteRateMovie(int movieId) async {
     return await apiCall(remoteDataSource.deleteRateMovie(movieId));
+  }
+
+  @override
+  Future<Either<NetworkException, List<Genre>?>> getGenres() async {
+    return await apiCall(remoteDataSource.getGenres());
   }
 
 }

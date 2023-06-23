@@ -21,4 +21,5 @@ abstract class MovieRepository {
   Future<Either<NetworkException, List<Movie>?>> getRatedMovies(GetMoviesParams params);
   Future<Either<NetworkException, bool?>> postRateMovie(PostRateMovieParams params);
   Future<Either<NetworkException, bool?>> deleteRateMovie(int movieId);
+  Future<Either<NetworkException, List<Genre>?>> getGenres();
 }

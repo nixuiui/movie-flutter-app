@@ -3,6 +3,7 @@ import 'package:movie_app/core/services/dialog_service.dart';
 import 'package:movie_app/core/services/toast_service.dart';
 import 'package:movie_app/features/movie/domain/usecases/delete_rate_movie.dart';
 import 'package:movie_app/features/movie/domain/usecases/get_favorite_movies.dart';
+import 'package:movie_app/features/movie/domain/usecases/get_genres.dart';
 import 'package:movie_app/features/movie/domain/usecases/get_movie_detail.dart';
 import 'package:movie_app/features/movie/domain/usecases/get_movies.dart';
 import 'package:movie_app/features/movie/domain/usecases/get_now_playing_movies.dart';
@@ -22,8 +23,8 @@ import 'package:movie_app/features/movie/presentation/controllers/watchlist_movi
 
 import 'core/services/network_service.dart';
 import 'features/home/presentation/controllers/home_controller.dart';
-import 'features/movie/data/datasource/order_remote_data_source.dart';
-import 'features/movie/data/repositories/order_repository_impl.dart';
+import 'features/movie/data/datasource/movie_remote_data_source.dart';
+import 'features/movie/data/repositories/movie_repository_impl.dart';
 import 'features/movie/domain/repositories/movie_repository.dart';
 
 abstract class Injector {
@@ -59,10 +60,12 @@ Future<void> movieInjection() async {
   Get.lazyPut(() => GetRatedMovies(Get.find()));
   Get.lazyPut(() => PostRateMovie(Get.find()));
   Get.lazyPut(() => DeleteRateMovie(Get.find()));
+  Get.lazyPut(() => GetGenres(Get.find()));
 
   Get.put(MovieController());
   Get.put(MovieListController(
-    getMovies: Get.find()
+    getMovies: Get.find(),
+    getGenres: Get.find(),
   ));
   Get.put(FavoriteMovieController(
     getFavoriteMovies: Get.find()

@@ -21,6 +21,7 @@ abstract class MovieRemoteDataSource {
   Future<List<MovieModel>?> getRatedMovies(GetMoviesParams params);
   Future<bool?> postRateMovie(PostRateMovieParams params);
   Future<bool?> deleteRateMovie(int movieId);
+  Future<List<GenreModel>?> getGenres();
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
@@ -75,6 +76,16 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     var data = response.data != null
           ? List<MovieModel>.from(response.data['results'].map((x) => MovieModel.fromJson(x)))
           : <MovieModel>[];
+    return data;
+  }
+
+  @override
+  Future<List<GenreModel>?> getGenres() async {
+    var url = '/3/genre/movie/list?language=en';
+    final response = await _service.get(url: url);
+    var data = response.data != null
+          ? List<GenreModel>.from(response.data['genres'].map((x) => GenreModel.fromJson(x)))
+          : <GenreModel>[];
     return data;
   }
 

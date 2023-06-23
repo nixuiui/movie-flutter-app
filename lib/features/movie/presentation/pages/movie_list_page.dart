@@ -4,6 +4,7 @@ import 'package:movie_app/core/const/enum.dart';
 import 'package:movie_app/features/movie/movie_routes.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_list_controller.dart';
 import 'package:movie_app/features/movie/presentation/pages/movie_detail_page.dart';
+import 'package:movie_app/features/movie/presentation/widgets/bottom_sheets/genre_bottom_sheet.dart';
 import 'package:movie_app/features/movie/presentation/widgets/bottom_sheets/sort_bottom_sheet.dart';
 import 'package:movie_app/features/movie/presentation/widgets/movie_item_widget.dart';
 import 'package:nixui/themes/theme.dart';
@@ -76,6 +77,25 @@ class _MovieListPageState extends State<MovieListPage> {
               ],
             ),
           ),
+          const SizedBox(width: 16,),
+          NxBox(
+            borderColor: NxColor.border,
+            borderRadius: 50,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            onPressed: _showGenreDrawer,
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.category,
+                  size: 16,
+                ),
+                const SizedBox(width: 8,),
+                NxText(movieController.selectedGenre.isNotEmpty 
+                    ? '${movieController.selectedGenre.length} Genres' 
+                    : 'Select Genre'),
+              ],
+            ),
+          ),
         ],
       )),
     );
@@ -112,9 +132,22 @@ class _MovieListPageState extends State<MovieListPage> {
       const SortBottomSheet(),
       isScrollControlled: true,
     );
-    print(result);
     if (result != null) {
       movieController.setSort(result['sort']);
+    }
+  }
+
+  void _showGenreDrawer() async {
+    var result = await Get.bottomSheet(
+      GenreBottomSheet(
+        genreOptions: movieController.genres,
+        selectedGenres: movieController.selectedGenre,
+      ),
+      isScrollControlled: true,
+    );
+    if (result != null) {
+      print(result['genres']);
+      movieController.setGenres(result['genres']);
     }
   }
 }
