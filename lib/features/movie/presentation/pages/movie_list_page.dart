@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_app/core/const/enum.dart';
 import 'package:movie_app/features/movie/movie_routes.dart';
 import 'package:movie_app/features/movie/presentation/controllers/movie_list_controller.dart';
 import 'package:movie_app/features/movie/presentation/pages/movie_detail_page.dart';
+import 'package:movie_app/features/movie/presentation/widgets/bottom_sheets/sort_bottom_sheet.dart';
 import 'package:movie_app/features/movie/presentation/widgets/movie_item_widget.dart';
+import 'package:nixui/themes/theme.dart';
 import 'package:nixui/widgets/nixui.dart';
 
 class MovieListPage extends StatefulWidget {
@@ -41,13 +44,40 @@ class _MovieListPageState extends State<MovieListPage> {
         onRefresh: movieController.refreshData,
         child: ListView(
           controller: scrollController,
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 32),
           physics: const AlwaysScrollableScrollPhysics(),
           children: [
+            _buildFilterSection(),
             _buildMovieList(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildFilterSection() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: Obx(() => Row(
+        children: [
+          NxBox(
+            borderColor: NxColor.border,
+            borderRadius: 50,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            onPressed: _showSortDrawer,
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.sort,
+                  size: 16,
+                ),
+                const SizedBox(width: 8,),
+                NxText(movieController.sort.value.label),
+              ],
+            ),
+          ),
+        ],
+      )),
     );
   }
 
@@ -75,5 +105,16 @@ class _MovieListPageState extends State<MovieListPage> {
         Obx(() => movieController.loadingList.value ? const NxLoadingSpinner() : const SizedBox.shrink()),
       ],
     );
+  }
+
+  void _showSortDrawer() async {
+    var result = await Get.bottomSheet(
+      const SortBottomSheet(),
+      isScrollControlled: true,
+    );
+    print(result);
+    if (result != null) {
+      movieController.setSort(result['sort']);
+    }
   }
 }

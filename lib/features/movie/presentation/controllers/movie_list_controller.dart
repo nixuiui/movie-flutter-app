@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_app/core/const/enum.dart';
 import 'package:movie_app/core/services/toast_service.dart';
 import 'package:movie_app/features/movie/domain/entities/movie.dart';
 import 'package:movie_app/features/movie/domain/entities/params/get_movies_params.dart';
@@ -19,12 +19,12 @@ class MovieListController extends GetxController {
 
   final loadingList = RxBool(false);
 
-  final searchController = TextEditingController();
-
   var page = 1;
   final perPage = 20;
   final mealScrollThreshold = 200.0;
   final mealHasReachedMax = RxBool(false);
+
+  final sort = Rx<SortOption>(SortOption.popular);
 
   final movies = RxList<Movie>([]);
 
@@ -57,7 +57,8 @@ class MovieListController extends GetxController {
     var currentData = movies;
 
     final response = await getMovies.call(GetMoviesParams(
-      page: page
+      page: page,
+      sort: sort.value
     ));
 
     response.fold(
@@ -94,6 +95,12 @@ class MovieListController extends GetxController {
     } else {
       page = (length/perPage).ceil() + 1;
     }
+  }
+
+  void setSort(SortOption value) {
+    print('value: $value');
+    sort.value = value;
+    refreshData();
   }
   
 }
