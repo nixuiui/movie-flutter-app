@@ -22,7 +22,7 @@ class GenreForm extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       children: [
-        const NxText.headline6('Urutkan'),
+        const NxText.headline6('Select Genre'),
         const SizedBox(height: 16,),
         ...(genreOptions ?? []).map((e) {
           final findIndex = selectedGenres?.indexWhere((item) => e.id == item.id) ?? -1;

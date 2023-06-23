@@ -25,7 +25,7 @@ class SortForm extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       children: [
-        const NxText.headline6('Urutkan'),
+        const NxText.headline6('Sort'),
         const SizedBox(height: 16,),
         ...sortOptions.map((e) => NxBox(
           onPressed: () => onSelected?.call(e),
