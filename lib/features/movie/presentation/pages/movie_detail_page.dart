@@ -42,7 +42,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         title: const Text('Movie Detail'),
         actions: [
           IconButton(
-            onPressed: detailController.addToWatchlist, 
+            onPressed: detailController.masrkAsFavorite, 
             icon: const Icon(Icons.favorite)
           ),
           IconButton(

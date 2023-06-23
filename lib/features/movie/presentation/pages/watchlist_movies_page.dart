@@ -21,6 +21,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage> {
   @override
   void initState() {
     scrollController.addListener(_onScroll);
+    movieController.init();
     super.initState();
   }
 
