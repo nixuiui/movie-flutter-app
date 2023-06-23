@@ -5,7 +5,7 @@ class PostMarkAsFavoriteParams {
     });
 
     final int mediaId;
-    final int favorite;
+    final bool favorite;
 
     Map<String, dynamic> toJson() => {
       "media_type": "movie",

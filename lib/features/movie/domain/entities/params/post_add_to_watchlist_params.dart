@@ -1,15 +1,15 @@
 class PostAddToWatchListParams {
     PostAddToWatchListParams({
         required this.mediaId,
-        required this.favorite,
+        required this.watchlist,
     });
 
     final int mediaId;
-    final int favorite;
+    final bool watchlist;
 
     Map<String, dynamic> toJson() => {
       "media_type": "movie",
       "media_id": mediaId,
-      "watchlist": favorite
+      "watchlist": watchlist
     };
 }
